@@ -1,0 +1,1 @@
+The core comprises immutable specifications, basis objects, clustered GLM fitting, standardized contrasts, boundary scanning, and fail-closed validation. Study-specific configuration and the thin adapter are kept separate from generic primitives.

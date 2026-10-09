@@ -1,0 +1,112 @@
+{
+  "analysis": {
+    "exposure": "gcs",
+    "outcome": "intubation",
+    "cluster": "hospital",
+    "covariates": [
+      "agec",
+      "agec2",
+      "male",
+      "blunt",
+      "alcohol_yes",
+      "alcohol_unknown",
+      "yearc",
+      "sbpc",
+      "hrc",
+      "rrc"
+    ],
+    "basis": {
+      "kind": "natural_spline",
+      "lower": 5,
+      "upper": 12,
+      "knots": [
+        7,
+        9,
+        11
+      ]
+    },
+    "lower": 5,
+    "upper": 12,
+    "transforms": [
+      {
+        "source": "age",
+        "target": "agec",
+        "center": 65,
+        "scale": 10,
+        "power": 1
+      },
+      {
+        "source": "age",
+        "target": "agec2",
+        "center": 65,
+        "scale": 10,
+        "power": 2
+      },
+      {
+        "source": "year",
+        "target": "yearc",
+        "center": 2011,
+        "scale": 1.0,
+        "power": 1
+      },
+      {
+        "source": "sbp",
+        "target": "sbpc",
+        "center": 130,
+        "scale": 10,
+        "power": 1
+      },
+      {
+        "source": "hr",
+        "target": "hrc",
+        "center": 80,
+        "scale": 10,
+        "power": 1
+      },
+      {
+        "source": "rr",
+        "target": "rrc",
+        "center": 18,
+        "scale": 5,
+        "power": 1
+      }
+    ],
+    "id_column": "sid",
+    "required_scores": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "expected_rank": 15,
+    "label": "2008-2014",
+    "input_rules": [
+      {
+        "column": "year",
+        "lower": 2008,
+        "upper": 2014,
+        "integer": true,
+        "allow_missing": false
+      }
+    ]
+  },
+  "boundaries": [
+    5.5,
+    6.5,
+    7.5,
+    8.5,
+    9.5,
+    10.5,
+    11.5
+  ],
+  "outcomes": [
+    "severe_head",
+    "death",
+    "head_surgery",
+    "intubation"
+  ]
+}

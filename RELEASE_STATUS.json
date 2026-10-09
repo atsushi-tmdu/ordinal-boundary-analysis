@@ -1,0 +1,15 @@
+{
+  "status": "AUTHOR_REVIEW_ONLY",
+  "public_release": false,
+  "github_push": false,
+  "patient_data_included": false,
+  "study_scope": [
+    "q1",
+    "q2",
+    "q3_local",
+    "q3_full",
+    "s18"
+  ],
+  "licensing": "NOT_YET_APPROVED",
+  "historical_pipeline_equivalence": "NOT_ESTABLISHED"
+}

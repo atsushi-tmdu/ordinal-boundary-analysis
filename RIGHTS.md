@@ -1,0 +1,1 @@
+This archive is an author-review candidate and is not licensed for third-party redistribution yet. The author must confirm institutional ownership and permissions and select an explicit software license before any public release. Restricted JTDB data are not included. The absence of such data does not by itself determine all software or institutional rights.

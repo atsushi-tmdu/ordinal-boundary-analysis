@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ordinal-boundary-core"
+version = "0.3.0.dev0"
+description = "Composable ordinal-exposure modeling primitives for clustered binary outcomes"
+requires-python = ">=3.11"
+authors = [{name = "Atsushi Senda"}]
+dependencies = ["numpy>=1.26,<3", "pandas>=2.2,<3", "scipy>=1.13,<2", "statsmodels>=0.14.6,<0.15", "patsy>=1.0.1,<1.1", "threadpoolctl>=3.5,<4"]
+
+[project.optional-dependencies]
+test = ["pytest>=8,<10"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
