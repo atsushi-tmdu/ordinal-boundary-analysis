@@ -60,3 +60,23 @@ def test_two_era_q1_pooling():
     assert 0<=result['era_difference_p_normal']<=1
     with pytest.raises(ContractError):
         combine_q1(left,left)
+
+
+@pytest.mark.parametrize('task,expected_size',(('q1',179),('s18',719)))
+def test_complete_case_year_missing_handling(task,expected_size):
+    contract=StudyContract.from_file(ROOT/'configs/sjtrem_2008_2014.json')
+    frame=simulated_eligible('2008-2014',seed=613)
+    frame.loc[frame.index[frame.gcs==4][0],'year']=np.nan
+    frame.loc[frame.index[frame.gcs==8][0],'year']=np.nan
+    spec=contract.for_task(task,'intubation')
+    sample=AnalysisSample.from_frame(frame,spec)
+    assert sample.n==expected_size
+    assert sample._frame['year'].notna().all()
+
+
+def test_included_out_of_era_year_fails():
+    contract=StudyContract.from_file(ROOT/'configs/sjtrem_2008_2014.json')
+    frame=simulated_eligible('2008-2014',seed=714)
+    frame.loc[frame.index[frame.gcs==8][0],'year']=2019
+    with pytest.raises(ContractError):
+        AnalysisSample.from_frame(frame,contract.for_task('s18','intubation'))

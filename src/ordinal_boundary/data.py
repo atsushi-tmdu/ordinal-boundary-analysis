@@ -23,7 +23,6 @@ class AnalysisSample:
             require(spec.id_column in d, "Missing identifier column")
             ids=d[spec.id_column]
             require(ids.notna().all() and ids.astype(str).str.strip().ne('').all() and not ids.astype(str).duplicated().any(), "Invalid or duplicate participant keys")
-        for rule in spec.input_rules:rule.validate(d)
         for t in spec.transforms:
             require(t.source in d,"Missing transform source")
             require(t.target not in source.columns, "Transform would overwrite existing column")
@@ -35,6 +34,7 @@ class AnalysisSample:
         require(all(pd.api.types.is_numeric_dtype(d[c]) for c in numeric),"Analysis variables must be numeric")
         mask=d[spec.exposure].between(spec.lower,spec.upper) & d[need].notna().all(axis=1)
         d=d.loc[mask].copy()
+        for rule in spec.input_rules:rule.validate(d)
         require(len(d)>0,"Empty complete-case sample")
         require(np.isfinite(d[numeric].to_numpy(float)).all(),"Nonfinite retained value; no silent post-hoc exclusion")
         require(set(d[spec.outcome].unique())=={0,1},"Outcome must contain binary events and nonevents")
