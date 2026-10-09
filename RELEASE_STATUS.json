@@ -1,7 +1,7 @@
 {
-  "status": "AUTHOR_REVIEW_ONLY",
+  "status": "PRIVATE_RELEASE_PREPARATION",
   "public_release": false,
-  "github_push": false,
+  "github_push": true,
   "patient_data_included": false,
   "study_scope": [
     "q1",
@@ -10,6 +10,7 @@
     "q3_full",
     "s18"
   ],
-  "licensing": "NOT_YET_APPROVED",
-  "historical_pipeline_equivalence": "NOT_ESTABLISHED"
+  "licensing": "MIT_AUTHOR_CONFIRMED",
+  "historical_pipeline_equivalence": "NOT_ESTABLISHED",
+  "repository": "atsushi-tmdu/ordinal-boundary-analysis"
 }

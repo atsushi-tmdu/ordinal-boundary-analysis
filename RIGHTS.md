@@ -1,1 +1,3 @@
-This archive is an author-review candidate and is not licensed for third-party redistribution yet. The author must confirm institutional ownership and permissions and select an explicit software license before any public release. Restricted JTDB data are not included. The absence of such data does not by itself determine all software or institutional rights.
+The author has confirmed authority to distribute the software and documentation in this release under the MIT License (see LICENSE).
+
+This license does not apply to any JTDB patient-level records, restricted registry extracts, protected intermediate outputs, or third-party works not included in this repository. Access to JTDB data remains governed by applicable data-use conditions. No such restricted data are supplied here.

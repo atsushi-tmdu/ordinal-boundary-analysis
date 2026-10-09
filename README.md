@@ -1,6 +1,6 @@
 # Ordinal-boundary statistical methods
 
-Review candidate. Not yet approved for public distribution.
+Private prepublication candidate. The software is MIT-licensed; public repository release awaits a separate author decision.
 
 This package provides reusable components for clustered binary-outcome regression, marginal standardization, local contrasts, and nested boundary comparisons. The `ordinal_boundary.studies.primary` adapter and `configs/` specify the three principal analytical questions and the GCS 5–12 spline sensitivity described in *Reproducible Intubation Contrast Without Evidence of a Unique Threshold at Glasgow Coma Scale 8*.
 
@@ -56,4 +56,4 @@ Automated tests exercise numerical primitives, contract enforcement, synthetic e
 
 ## Distribution
 
-This is an author-review candidate. Licensing, institutional permissions, repository URL, release tag, and any journal code-availability statement must be finalized before public release. No clinical data are supplied.
+The code and associated documentation are available under the MIT License (see LICENSE). The GitHub repository remains private pending scientific-scope review, public release approval, and immutable version tagging. This repository does not distribute patient-level data or restricted study outputs. The availability statement for the manuscript must reflect the actual published repository and its verified scope.
