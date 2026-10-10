@@ -1,5 +1,5 @@
 {
-  "file_count": 34,
+  "file_count": 35,
   "files": {
     ".github/workflows/tests.yml": "341b07be0d2522e38e39f6745a9a06e66b2d7e24e5a2cfb547f59b6a77428cae",
     ".gitignore": "518721f9eec6c44d51c95e372a74dc1e60bc301ee8664d9b5c1dfe6c33980f56",
@@ -20,7 +20,7 @@
     "src/ordinal_boundary/data.py": "ad2b9618ba697e49e4694650d1af50f5da4bdc182f21eb7131dd6384a930443c",
     "src/ordinal_boundary/models.py": "648de61f08820d95f61cd4b3d4dff3186da5a2878b792a5f9c63fd7832ac98f7",
     "src/ordinal_boundary/program.py": "660f2cd297f49e277d31e07458ab3325e93d2606e4e6da44565ea24e4352b046",
-    "src/ordinal_boundary/storage.py": "ed45c2d6d836dc8b098cf2157cc7a5aff128627ef07a0bc34447f00034cda3a0",
+    "src/ordinal_boundary/storage.py": "cb2c699fce6798a44bf500707be321bcd9159c149811b60e16b6ba33b5958a18",
     "src/ordinal_boundary/studies/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "src/ordinal_boundary/studies/primary.py": "c747d6c454d55dbd283be831611111d7a6eb8ecf41b9c939931a86a5c4a13bc2",
     "src/ordinal_boundary/studies/simulated.py": "e213cdbfd13b07e9188bbaef990ec730ced7db7ae596d190b84759fd60ec7d9e",
@@ -34,6 +34,7 @@
     "tests/test_defensive.py": "453475b8e378ea27cb44fa89ec05d8bb7dc3a9843c7fe023a7ab026d43d6c864",
     "tests/test_step4i_regressions.py": "3bb0ac664fd6ed36b577b09b2cef21b8ded609aa7729744f77412abe20147401",
     "tests/test_step4k26_inference.py": "16631e2b502cff576ad99f89d87a6339e702396f621f497b137d418ce4e7f845",
+    "tests/test_step4k33_aggregate_export.py": "4f53756a99b8b0b00aa7af8744a26681cd475f9e3ab4433da9c85a1b52683d3c",
     "tests/test_synthetic.py": "d0642a6718ce107067d327833f9cd5a396eecf692971eeb3373d8dad72773991"
   }
 }

@@ -50,13 +50,14 @@ class CheckpointStore:
 class AggregateExporter:
     FIELDS={'label','outcome','boundary','n','events','active_G','source_rows','sample_fingerprint','reference_k','step_k',
       'reference_llf','step_llf','reference_AIC','step_AIC','reference_BIC','step_BIC','delta_BIC','delta_AIC','LR_chi2','LR_df','LR_p',
-      'step_log_OR','step_SE_cluster','step_OR_cluster','step_OR_low','step_OR_high','step_p_cluster'}
+      'step_log_OR','step_SE_cluster','step_OR_cluster','step_OR_low','step_OR_high','step_p_cluster',
+      'step_SE_model_based','step_p_model_based'}
     @classmethod
     def write(cls,path:Path,rows:list[dict])->None:
         require(bool(rows),"Empty aggregate export")
         for r in rows:
             require(set(r)==cls.FIELDS,"Unexpected aggregate fields; potential row-level export refused")
-            for k in ('label','outcome'):require(bool(re.fullmatch(r'[A-Za-z0-9_. -]{1,100}',r[k])),"Unsafe aggregate label")
+            for k in ('label','outcome'):require(bool(re.fullmatch(r'[A-Za-z0-9_. :-]{1,100}',r[k])),"Unsafe aggregate label")
             for k,v in r.items(): require(not isinstance(v,(list,dict,tuple)),"Nested or row-level output refused")
         import pandas as pd
         p=Path(path);raw=pd.DataFrame(rows).to_csv(index=False).encode()
