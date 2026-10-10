@@ -69,4 +69,15 @@ def combine_q1(first:dict,second:dict)->dict:
     rd=FixedEffectPool((r1['estimate'],r2['estimate']),(r1['SE'],r2['SE'])).evaluate()
     lor=FixedEffectPool((o1['log_odds'],o2['log_odds']),(o1['standard_error'],o2['standard_error'])).evaluate()
     z=(o1['log_odds']-o2['log_odds'])/math.sqrt(o1['standard_error']**2+o2['standard_error']**2)
-    return {'outcome':first['outcome'],'eras':(first['era'],second['era']),'risk_difference':rd,'pooled_odds_ratio':math.exp(lor['estimate']),'pooled_odds_ratio_low':math.exp(lor['CI_low']),'pooled_odds_ratio_high':math.exp(lor['CI_high']),'era_difference_p_normal':float(2*stats.norm.sf(abs(z))),'scale':'independent-era fixed-effect summary'}
+    delta=float(r2['estimate']-r1['estimate'])
+    delta_se=math.hypot(r1['SE'],r2['SE'])
+    require(np.isfinite(delta_se) and delta_se>0,"Invalid era risk-difference uncertainty")
+    critical=float(stats.norm.ppf(.975))
+    era_rd={'difference':delta,'SE':delta_se,'CI_low':delta-critical*delta_se,
+            'CI_high':delta+critical*delta_se,'p_normal':float(2*stats.norm.sf(abs(delta/delta_se))),
+            'direction':'second-minus-first','scale':'probability; multiply by 100 for percentage points'}
+    return {'outcome':first['outcome'],'eras':(first['era'],second['era']),'risk_difference':rd,
+            'era_risk_difference':era_rd,
+            'pooled_odds_ratio':math.exp(lor['estimate']),'pooled_odds_ratio_low':math.exp(lor['CI_low']),
+            'pooled_odds_ratio_high':math.exp(lor['CI_high']),'era_difference_p_normal':float(2*stats.norm.sf(abs(z))),
+            'scale':'independent-era fixed-effect summary'}

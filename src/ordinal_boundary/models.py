@@ -82,13 +82,22 @@ class NestedComparison:
         b=float(a.coefficients[-1]);se=float(np.sqrt(a.covariance[-1,-1]))
         require(np.isfinite(se) and se>0,"Invalid boundary standard error")
         z=stats.norm.ppf(.975)
+        x=a.design.matrix
+        fitted=expit(x@a.coefficients)
+        fisher=x.T@((fitted*(1-fitted))[:,None]*x)
+        axis=np.zeros(a.k)
+        axis[-1]=1.
+        variance_model=float(np.linalg.solve(fisher,axis)[-1])
+        require(np.isfinite(variance_model) and variance_model>0,"Invalid model-based step variance")
+        se_model=math.sqrt(variance_model)
         row={"label":r.design.sample.spec.label,"outcome":r.design.sample.spec.outcome,"boundary":a.design.boundary,
           **r.design.sample.summary(),"reference_k":r.k,"step_k":a.k,"reference_llf":r.llf,"step_llf":a.llf,
           "reference_AIC":r.aic,"step_AIC":a.aic,"reference_BIC":r.bic,"step_BIC":a.bic,
           "delta_BIC":a.bic-r.bic,"delta_AIC":a.aic-r.aic,"LR_chi2":lr,"LR_df":1,
           "LR_p":float(stats.chi2.sf(max(0,lr),1)),"step_log_OR":b,"step_SE_cluster":se,
           "step_OR_cluster":math.exp(b),"step_OR_low":math.exp(b-z*se),"step_OR_high":math.exp(b+z*se),
-          "step_p_cluster":float(2*stats.norm.sf(abs(b/se)))}
+          "step_p_cluster":float(2*stats.norm.sf(abs(b/se))),
+          "step_SE_model_based":se_model,"step_p_model_based":float(2*stats.norm.sf(abs(b/se_model)))}
         require(abs(row['delta_BIC']-(math.log(a.n)-lr))<1e-8,"BIC/LR identity failed")
         require(abs(row['delta_AIC']-(2-lr))<1e-8,"AIC/LR identity failed")
         return row
